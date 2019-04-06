@@ -6,9 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.frcst.data.db.entity.CurrentWeatherEntry
+import com.example.frcst.data.db.entity.FutureWeatherEntry
 import com.example.frcst.data.db.entity.WeatherLocation
 
-@Database(entities = [CurrentWeatherEntry::class, WeatherLocation::class], version = 1)
+@Database(entities = [CurrentWeatherEntry::class, WeatherLocation::class, FutureWeatherEntry::class], version = 1)
+@TypeConverters(LocalDateConverter::class)
 abstract class ForecastDatabase : RoomDatabase(){
 
     abstract fun currentWeatherDao(): CurrentWeatherDao

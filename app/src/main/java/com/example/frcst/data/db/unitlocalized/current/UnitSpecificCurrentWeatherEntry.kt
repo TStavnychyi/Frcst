@@ -1,4 +1,4 @@
-package com.example.frcst.data.db.unitlocalized
+package com.example.frcst.data.db.unitlocalized.current
 
 interface UnitSpecificCurrentWeatherEntry {
     val temperature: Double

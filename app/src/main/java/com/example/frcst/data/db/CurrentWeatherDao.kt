@@ -7,8 +7,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.frcst.data.db.entity.CURRENT_WEATHER_ID
 import com.example.frcst.data.db.entity.CurrentWeatherEntry
-import com.example.frcst.data.db.unitlocalized.ImperialCurrentWeatherEntry
-import com.example.frcst.data.db.unitlocalized.MetricCurrentWeatherEntry
+import com.example.frcst.data.db.unitlocalized.current.ImperialCurrentWeatherEntry
+import com.example.frcst.data.db.unitlocalized.current.MetricCurrentWeatherEntry
 
 
 @Dao

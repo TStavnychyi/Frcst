@@ -2,19 +2,19 @@ package com.example.frcst.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.example.frcst.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
+import com.example.frcst.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 bindLocationManager()
             else
-                Toast.makeText(this, "Please, set location manually in settings", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Please, set location manually in settings", Toast.LENGTH_LONG).show()
         }
     }
 

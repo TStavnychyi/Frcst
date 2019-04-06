@@ -34,7 +34,6 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CurrentWeatherViewModel::class.java)
-
         bindUI()
     }
 
@@ -46,11 +45,15 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         weatherLocation.observe(this@CurrentWeatherFragment, Observer {location ->
             if(location == null) return@Observer
 
+            Log.e("Fragment", "weatherLocation observe")
+
             updateLocation(location.name)
         })
 
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if(it == null) return@Observer
+
+            Log.e("Fragment", "weather observer")
 
             group_loading.visibility = View.GONE
             updateDateToToday()
@@ -59,8 +62,6 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection, it.windSpeed)
             updateVisibility(it.visibilityDistance)
-
-            Log.e("TAG", "bindUI()")
 
             GlideApp.with(this@CurrentWeatherFragment)
                 .load( "https:${it.conditionIconUrl}")

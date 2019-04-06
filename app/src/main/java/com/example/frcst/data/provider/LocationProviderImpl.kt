@@ -36,10 +36,6 @@ class LocationProviderImpl(
         return customLocationName != lastWeatherLocation.name
     }
 
-    private fun getCustomLocationName(): String? {
-        return preferences.getString(CUSTOM_LOCATION, null)
-    }
-
     private suspend fun hasDeviceLocationChanged(lastWeatherLocation: WeatherLocation): Boolean {
         if(!isUsingDeviceLocation())
             return false
@@ -55,7 +51,6 @@ class LocationProviderImpl(
     @SuppressLint("MissingPermission")
     private fun getLastDeviceLocation(): Deferred<Location?> {
         return if(hasLocationPermission()) {
-            val asd = fusedLocationProviderClient.lastLocation
             fusedLocationProviderClient.lastLocation.asDeferred()
         }
         else
@@ -64,6 +59,10 @@ class LocationProviderImpl(
 
     private fun isUsingDeviceLocation(): Boolean {
         return preferences.getBoolean(USE_DEVICE_LOCATION, true)
+    }
+
+    private fun getCustomLocationName(): String? {
+        return preferences.getString(CUSTOM_LOCATION, null)
     }
 
     override suspend fun getPreferredLocationString(): String {
