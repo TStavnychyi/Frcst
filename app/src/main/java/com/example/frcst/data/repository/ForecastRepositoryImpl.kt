@@ -60,7 +60,6 @@ class ForecastRepositoryImpl(
     }
 
     private suspend fun fetchCurrentWeather() {
-        val a = locationProvider.getPreferredLocationString()
         weatherNetworkDataSource.fetchCurrentWeather(
             locationProvider.getPreferredLocationString(),
             Locale.getDefault().language)
