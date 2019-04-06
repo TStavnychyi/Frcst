@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.frcst.data.db.entity.CurrentWeatherEntry
 import com.example.frcst.data.db.entity.WeatherLocation
 
@@ -11,6 +12,7 @@ import com.example.frcst.data.db.entity.WeatherLocation
 abstract class ForecastDatabase : RoomDatabase(){
 
     abstract fun currentWeatherDao(): CurrentWeatherDao
+    abstract fun futureWeatherDao(): FutureWeatherDao
     abstract fun currentLocationDao(): WeatherLocationDao
 
     companion object {
