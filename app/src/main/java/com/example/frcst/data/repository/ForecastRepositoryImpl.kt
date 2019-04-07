@@ -1,13 +1,13 @@
 package com.example.frcst.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.frcst.data.db.CurrentWeatherDao
 import com.example.frcst.data.db.FutureWeatherDao
 import com.example.frcst.data.db.WeatherLocationDao
 import com.example.frcst.data.db.entity.WeatherLocation
 import com.example.frcst.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
-import com.example.frcst.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.example.frcst.data.db.unitlocalized.future.detail.UnitSpecificDetailFutureWeatherEntry
+import com.example.frcst.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.example.frcst.data.network.FORECAST_DAYS_COUNT
 import com.example.frcst.data.network.WeatherNetworkDataSource
 import com.example.frcst.data.network.response.CurrentWeatherResponse
@@ -124,6 +124,17 @@ class ForecastRepositoryImpl(
             initWeatherData()
             return@withContext if(metric) futureWeatherDao.getSimpleWeatherForecastsMetric(startDate)
             else futureWeatherDao.getSimpleWeatherForecastsImperial(startDate)
+        }
+    }
+
+    override suspend fun getFutureWeatherByDate(
+        date: LocalDate,
+        metric: Boolean
+    ): LiveData<out UnitSpecificDetailFutureWeatherEntry> {
+        return withContext(Dispatchers.IO) {
+            initWeatherData()
+            return@withContext if(metric) futureWeatherDao.getDetailedWeatherByDateMetric(date)
+            else futureWeatherDao.getDetailedWeatherByDateImperial(date)
         }
     }
 }
